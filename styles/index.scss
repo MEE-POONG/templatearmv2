@@ -1,7 +1,27 @@
 @import "~bootstrap/scss/bootstrap";
 @import "grib.scss";
+@import "navbar.scss";
+@import "background.scss";
+@import "text.scss";
+@import "button.scss";
+@import "image.scss";
+@import "footer.scss";
+
 .test{
     h1{
         color: red;
     }
 }
+
+.dis1{
+    height: 100vh;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+body{
+    background-color: #f8f9fa;
+}
+

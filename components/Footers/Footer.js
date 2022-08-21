@@ -1,27 +1,70 @@
 import React from "react";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { BsFacebook,BsLine,BsFillTelephoneFill,BsEnvelopeFill,BsInstagram } from "react-icons/bs";
 
 export default function Footer() {
+  const [data, setData] = useState({
+    local: "",
+    des: "",
+    tel: "",
+    line: "",
+    facebook: "",
+    instagrm: "",
+    email: "",
+  });
+
+  useEffect(() => {
+    getData()
+  }, [])
+
+  const getData = async () => {
+    const res = await axios({
+      method: "GET",
+      url: "/api/footer",
+    });
+
+    setData(res.data);
+  };
   return (
     <>
-      <footer className="relative bg-blueGray-200 pt-8 pb-6">
-        <div
-          className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
-          style={{ transform: "translateZ(0)" }}
-        >
-          <hr className="my-6 border-blueGray-300" />
-          <div className="flex flex-wrap items-center md:justify-between justify-center">
-            <div className="w-full md:w-4/12 px-4 mx-auto text-center">
-              <div className="text-sm text-blueGray-500 font-semibold py-1">
-                Copyright © {new Date().getFullYear()} Notus NextJS by{" "}
-                <a
-                  href="https://www.creative-tim.com?ref=nnjs-footer"
-                  className="text-blueGray-500 hover:text-blueGray-800"
-                >
-                  Creative Tim
-                </a>
-                .
-              </div>
+      <footer class="site-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <h6>About</h6>
+              <p class="text-justify">{data.des}</p>
             </div>
+
+            <div class="col-xs-6 col-md-3">
+              <h6>Location</h6>
+              <ul class="footer-links">
+                <p class="text-justify">{data.local}</p>
+
+              </ul>
+            </div>
+
+            <div class="col-xs-6 col-md-3 ">
+              <h6>Contact Us</h6>
+              <ul class="footer-links my-3">
+                <p><BsFillTelephoneFill size={20}/> &nbsp;&nbsp;{data.tel}</p>
+                <p><BsEnvelopeFill size={20}/> &nbsp;&nbsp;{data.email}</p>
+                <p><BsLine size={20}/> &nbsp;&nbsp; {data.line}</p>
+                <p><BsFacebook size={20}/> &nbsp;&nbsp; {data.facebook}</p>
+                <p><BsInstagram size={20}/> &nbsp;&nbsp;{data.instagrm}</p>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+              <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by
+                <a href="#">Scanfcode</a>.
+              </p>
+            </div>
+
+
           </div>
         </div>
       </footer>
